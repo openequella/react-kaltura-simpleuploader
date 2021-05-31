@@ -1,0 +1,61 @@
+{
+  "name": "@openequella/react-kaltura-simpleuploader",
+  "version": "1.0.0",
+  "description": "A simple React upload component for Kaltura.",
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "config": {
+    "lintglobs": "src/**/*.{ts,tsx} test/**/*.{ts,tsx} stories/**/*.{ts,tsx}"
+  },
+  "scripts": {
+    "build": "rollup --config",
+    "lint": "eslint ${npm_package_config_lintglobs}",
+    "format": "eslint --fix ${npm_package_config_lintglobs}",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.3",
+    "@rollup/plugin-typescript": "8.2.1",
+    "@storybook/addon-actions": "6.2.9",
+    "@storybook/addon-essentials": "6.2.9",
+    "@storybook/addon-links": "6.2.9",
+    "@storybook/react": "6.2.9",
+    "@testing-library/react": "11.2.7",
+    "@types/jest": "26.0.23",
+    "@types/react": "17.0.8",
+    "@types/react-dom": "17.0.5",
+    "@typescript-eslint/eslint-plugin": "4.25.0",
+    "@typescript-eslint/parser": "4.25.0",
+    "babel-loader": "8.2.2",
+    "eslint": "7.27.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.23.3",
+    "eslint-plugin-jest": "24.3.6",
+    "eslint-plugin-prettier": "3.4.0",
+    "eslint-plugin-promise": "5.1.0",
+    "eslint-plugin-react": "7.23.2",
+    "husky": "6.0.0",
+    "jest": "27.0.1",
+    "lint-staged": "11.0.0",
+    "prettier": "2.3.0",
+    "rollup": "2.50.1",
+    "ts-jest": "27.0.1",
+    "typescript": "4.3.2"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix"
+  }
+}
