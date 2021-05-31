@@ -2,5 +2,11 @@
   "extends": [
     "config:base",
     ":maintainLockFilesMonthly"
+  ],
+  "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true
+    }
   ]
 }
