@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
+import { KalturaUploader, KalturaUploaderProps } from "KalturaUploader";
 import * as React from "react";
-import { KalturaUploader, KalturaUploaderProps } from "../src/KalturaUploader";
 
 export default {
   title: "KalturaUploader",
