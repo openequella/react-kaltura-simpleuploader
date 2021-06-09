@@ -1,6 +1,6 @@
-import { KalturaUploader, KalturaUploaderProps } from "../src/KalturaUploader";
 import { Meta, Story } from "@storybook/react";
 import * as React from "react";
+import { KalturaUploader, KalturaUploaderProps } from "../src/KalturaUploader";
 
 export default {
   title: "KalturaUploader",
@@ -10,3 +10,6 @@ export default {
 export const Init: Story<KalturaUploaderProps> = (args) => (
   <KalturaUploader {...args} />
 );
+Init.args = {
+  endpoint: "https://www.kaltura.com/",
+};
