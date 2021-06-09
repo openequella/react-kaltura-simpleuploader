@@ -28,7 +28,7 @@ export const Metadata = ({
     const entry = await createEntryForUpload(
       kClient,
       {
-        name: `${uploadResult.fileName} - ${new Date()}`,
+        name: `${uploadResult.fileName} - ${new Date().toUTCString()}`,
         mediaType: mediaType,
         description: "This is a test upload video",
       },
