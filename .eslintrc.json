@@ -7,7 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-//    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:jest/recommended",
     "plugin:jest/style",
     "plugin:prettier/recommended",
@@ -19,7 +19,7 @@
       "jsx": true
     },
     "ecmaVersion": 12,
-//    "project": ["./tsconfig.json"],
+    "project": ["./tsconfig.json"],
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
