@@ -19,9 +19,6 @@
     "paths": {
       "*": ["src/*", "node_modules/*"]
     },
-    "jsx": "react",
-    "plugins": [
-      { "transform": "typescript-is/lib/transform-inline/transformer" }
-    ]
+    "jsx": "react"
   }
 }
