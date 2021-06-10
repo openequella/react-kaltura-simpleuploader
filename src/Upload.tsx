@@ -5,6 +5,28 @@ import * as React from "react";
 import { useEffect, useReducer } from "react";
 import { reducer } from "UploadReducer";
 
+/**
+ * Generate a compressed representation of the number of provided bytes.
+ *
+ * Taken from https://gist.github.com/lanqy/5193417#gistcomment-3590752
+ *
+ * @param bytes The number to convert to a SI unit
+ */
+const bytesToSize = (bytes: number): string => {
+  if (bytes === 0) {
+    return "";
+  }
+
+  const sizes: string[] = ["Bytes", "KB", "MB", "GB", "TB"];
+  const i: number = parseInt(
+    Math.floor(Math.log(bytes) / Math.log(1024)).toString()
+  );
+  if (i === 0) {
+    return `${bytes} ${sizes[i]}`;
+  }
+  return `${(bytes / Math.pow(1024, i)).toFixed(1)} ${sizes[i]}`;
+};
+
 export interface UploadProps {
   /**
    * A list of file extensions which should be allowed.
@@ -88,7 +110,7 @@ export const Upload = ({
         <>
           <div>
             <p>Filename: {state.file.name}</p>
-            <p>File size: {state.file.size}</p>
+            <p>File size: {bytesToSize(state.file.size)}</p>
           </div>
           <div>
             <button
