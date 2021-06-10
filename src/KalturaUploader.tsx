@@ -1,3 +1,4 @@
+import { ErrorFallback } from "ErrorFallback";
 import { KalturaClient } from "kaltura-typescript-client";
 import {
   KalturaMediaEntry,
@@ -8,6 +9,7 @@ import { reducer } from "KalturaUploaderReducer";
 import { Metadata } from "Metadata";
 import * as React from "react";
 import { useReducer, useState } from "react";
+import { withErrorBoundary } from "react-error-boundary";
 import { Upload } from "Upload";
 
 /**
@@ -76,7 +78,7 @@ export interface KalturaUploaderProps {
  * A component which provides a guided method to uploading a single media asset and creating a basic
  * Media Entry in Kaltura.
  */
-export const KalturaUploader = ({
+const KalturaUploaderInternal = ({
   endpoint,
   ks,
   partnerId,
@@ -173,3 +175,7 @@ export const KalturaUploader = ({
     </div>
   );
 };
+
+export const KalturaUploader = withErrorBoundary(KalturaUploaderInternal, {
+  FallbackComponent: ErrorFallback,
+});
