@@ -47,6 +47,9 @@ const MediaTypes = {
   },
 };
 
+/**
+ * Supported options for types of media.
+ */
 type MediaTypeOptions = typeof MediaTypes.audio | typeof MediaTypes.video;
 
 /**
@@ -69,6 +72,10 @@ export interface KalturaUploaderProps {
   partnerId: number;
 }
 
+/**
+ * A component which provides a guided method to uploading a single media asset and creating a basic
+ * Media Entry in Kaltura.
+ */
 export const KalturaUploader = ({
   endpoint,
   ks,
@@ -124,12 +131,6 @@ export const KalturaUploader = ({
 
   return (
     <div id={kalturaUploaderId}>
-      <strong>This is the Kaltura Uploader!!</strong>
-      <p>endpoint: {endpoint}</p>
-      <p>ks: {ks}</p>
-      <p>partnerId: {partnerId}</p>
-      <hr />
-
       {state.id === "start" && (
         <>
           {mediaTypeSelector}

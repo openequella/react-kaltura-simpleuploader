@@ -14,12 +14,33 @@ export interface MetadataProps {
    * A prefix to add to the DOM `id` for the root of this component.
    */
   idPrefix: string;
+  /**
+   * A `KaltruaClient` that has been setup with valid session token and partner ID, possibly using
+   * `createClient` from `KalturaModule`.
+   */
   kClient: KalturaClient;
+  /**
+   * The media type for the Media Entry which is to be created - typically matching the type of file
+   * uploaded which resulted in the value provided for `uploadResult`.
+   */
   mediaType: KalturaMediaType;
+  /**
+   * Callback triggered on the successful creation of the Media Entry.
+   *
+   * @param entry Details returned from the server for the new Media Entry.
+   */
   onEntryCreated: (entry: KalturaMediaEntry) => void;
+  /**
+   * The result of a previously successful upload - such as one completed with the `Upload`
+   * component.
+   */
   uploadResult: KalturaUploadToken;
 }
 
+/**
+ * Having already uploaded a media file to Kaltura, this component then allows for the configuration
+ * of some basic metadata and the creation of an enclosing Media Entry on Kaltura.
+ */
 export const Metadata = ({
   idPrefix,
   kClient,
@@ -42,8 +63,6 @@ export const Metadata = ({
     if (!entry) {
       throw new Error("Failed to create new Media Entry!");
     }
-    console.log("FINAL RESULT");
-    console.log(entry);
 
     onEntryCreated(entry);
   };

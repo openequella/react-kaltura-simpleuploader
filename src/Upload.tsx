@@ -14,10 +14,23 @@ export interface UploadProps {
    * A prefix to add to the DOM `id` for the root of this component.
    */
   idPrefix: string;
+  /**
+   * A `KaltruaClient` that has been setup with valid session token and partner ID, possibly using
+   * `createClient` from `KalturaModule`.
+   */
   kClient: KalturaClient;
+  /**
+   * Callback to be triggered upon a successful file upload.
+   *
+   * @param uploadResult details returned from the server about the upload attempt.
+   */
   onUploadSuccessful: (uploadResult: KalturaUploadToken) => void;
 }
 
+/**
+ * A component providing a file selector and then integration to upload to a Kaltura instance
+ * configured by the provided `KalturaClient`.
+ */
 export const Upload = ({
   allowedTypes,
   idPrefix,
