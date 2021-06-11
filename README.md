@@ -35,3 +35,13 @@ run it. After that make sure you:
 The Kaltura libraries seem to mainly be [AGPLv3](https://choosealicense.com/licenses/agpl-3.0/)
 which is at odds with the [Apereo Practices on Third-Party
 Licenses](https://www.apereo.org/licensing/third-party). Hence, this module is stand-alone.
+
+## ToDo
+
+- [ ] Metadata form validation
+- [ ] Return details of new media entry to `index.render()` calls via callback - think we just need
+  to return the ID of the new entry.
+- [ ] Address warning : 'Notice! Your application bundle the whole package of kaltura-xxx-client
+  (either rxjs/ngx/typescript), please refer to the library `readme.md` to reduce app bundle size.'
+- [ ] Internationalisation
+- [ ] Increase test coverage
