@@ -8,6 +8,7 @@ import { BasicEntryMetadata, createEntryForUpload } from "KalturaModule";
 import { set } from "lodash";
 import * as React from "react";
 import { ChangeEvent, useState } from "react";
+import { useErrorHandler } from "react-error-boundary";
 
 export interface MetadataProps {
   /**
@@ -58,13 +59,20 @@ export const Metadata = ({
   // Basic compile time validator for form fields
   const formField = (name: keyof FormTarget) => name;
 
-  const onSubmit = async () => {
-    const entry = await createEntryForUpload(kClient, form, uploadResult.id);
-    if (!entry) {
-      throw new Error("Failed to create new Media Entry!");
-    }
+  const [error, setError] = useState<string>("");
+  const handleError = useErrorHandler();
 
-    onEntryCreated(entry);
+  const onSubmit = async () => {
+    try {
+      const entry = await createEntryForUpload(kClient, form, uploadResult.id);
+      if (!entry) {
+        setError("Failed to create new Media Entry!");
+      } else {
+        onEntryCreated(entry);
+      }
+    } catch (e) {
+      handleError(e);
+    }
   };
 
   const onFormChange = ({
@@ -79,6 +87,11 @@ export const Metadata = ({
   return (
     <div id={`${idPrefix}_metadata`}>
       <strong>Media Details</strong>
+      {error && (
+        <div role="alert">
+          <p>error</p>
+        </div>
+      )}
       <form
         onSubmit={(event) => {
           event.preventDefault();
