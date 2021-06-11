@@ -1,8 +1,8 @@
 import { KalturaClient } from "kaltura-typescript-client";
 import {
   KalturaMediaEntry,
-  KalturaUploadedFileTokenResource,
   KalturaUploadToken,
+  KalturaUploadedFileTokenResource,
   MediaAddAction,
   MediaAddContentAction,
   UploadTokenAddAction,
