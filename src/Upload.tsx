@@ -3,6 +3,7 @@ import { KalturaUploadToken } from "kaltura-typescript-client/api/types";
 import { createUploadToken, uploadFile } from "KalturaModule";
 import * as React from "react";
 import { useEffect, useReducer } from "react";
+import { useErrorHandler } from "react-error-boundary";
 import { reducer } from "UploadReducer";
 
 /**
@@ -61,27 +62,40 @@ export const Upload = ({
 }: UploadProps): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, { id: "start" });
 
+  useErrorHandler(state.id === "error" ? state.error : undefined);
+
   useEffect(() => {
-    const dispatchError = (msg: string) =>
-      dispatch({ id: "failed", cause: new Error(msg) });
+    const dispatchError = (c: string | Error) =>
+      dispatch({ id: "failed", cause: c instanceof Error ? c : new Error(c) });
+
+    const doUpload = async (file: File): Promise<void> => {
+      try {
+        const uploadToken = await createUploadToken(kClient);
+        if (uploadToken) {
+          const uploadResult = await uploadFile(kClient, uploadToken, file);
+          uploadResult
+            ? dispatch({ id: "upload_success", uploadResult })
+            : dispatchError("Attempt to upload to Kaltura failed.");
+        } else {
+          dispatchError(
+            "Attempt to create Kaltura Upload Token failed, please try again."
+          );
+        }
+      } catch (e) {
+        if (e instanceof Error) {
+          dispatchError(e);
+        } else {
+          console.error(e);
+          dispatchError(
+            "Unknown failure attempting to upload file, please see console log."
+          );
+        }
+      }
+    };
 
     switch (state.id) {
       case "file_uploading":
-        void (async () => {
-          const { file } = state;
-
-          const uploadToken = await createUploadToken(kClient);
-          if (uploadToken) {
-            const uploadResult = await uploadFile(kClient, uploadToken, file);
-            uploadResult
-              ? dispatch({ id: "upload_success", uploadResult })
-              : dispatchError("Attempt to upload to Kaltura failed.");
-          } else {
-            dispatchError(
-              "Attempt to create Kaltura Upload Token failed, please try again."
-            );
-          }
-        })();
+        void doUpload(state.file);
         break;
       case "upload_complete":
         onUploadSuccessful(state.uploadResult);
