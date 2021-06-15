@@ -1,6 +1,6 @@
 {
   "name": "@openequella/react-kaltura-simpleuploader",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A simple React upload component for Kaltura.",
   "license": "Apache-2.0",
   "main": "dist/index.js",
