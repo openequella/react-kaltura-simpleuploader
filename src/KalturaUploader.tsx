@@ -55,6 +55,18 @@ const MediaTypes = {
 type MediaTypeOptions = typeof MediaTypes.audio | typeof MediaTypes.video;
 
 /**
+ * Configuration for the media selector.
+ */
+const mediaTypeSelectorOptions: {
+  id: string;
+  label: string;
+  value: MediaTypeOptions;
+}[] = [
+  { id: "audio", label: "Audio", value: MediaTypes.audio },
+  { id: "video", label: "Video", value: MediaTypes.video },
+];
+
+/**
  * The DOM ID for the component for easier custom styling and interaction.
  */
 export const kalturaUploaderId = "kaltura-simple-uploader";
@@ -89,15 +101,6 @@ const KalturaUploaderInternal = ({
   );
 
   const client = createClient(endpoint, ks, partnerId);
-
-  const mediaTypeSelectorOptions: {
-    id: string;
-    label: string;
-    value: MediaTypeOptions;
-  }[] = [
-    { id: "audio", label: "Audio", value: MediaTypes.audio },
-    { id: "video", label: "Video", value: MediaTypes.video },
-  ];
 
   const mediaTypeSelectorId = "media-type-selector";
   const mediaTypeSelector = (
