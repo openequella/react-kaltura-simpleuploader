@@ -2,12 +2,17 @@
 
 A quick little example setup inspired by TSDX to show an almost real world intended use.
 
-To run it make sure first you do a build in the main project, and then come here and install the
-dependencies
+Before running, you first must make sure you build the main project (i.e. one level up). Then come
+here and install the dependencies
 
     npm ci
 
-and then start the Parcel web server:
+then make sure you configure your Kaltura details (generate yourself a `ks` elsewhere)
+
+    cp config.js.sample config.js
+    vim config.js
+
+then start the Parcel web server:
 
     npm run start
 

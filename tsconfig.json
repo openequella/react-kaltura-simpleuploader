@@ -1,14 +1,14 @@
 {
-  "include": ["src", "types"],
+  "include": ["src", "test", "stories"],
   "compilerOptions": {
     "module": "ES6",
     "lib": ["es2020", "dom"],
-    "target": "ES6",
+    "target": "es2016",
     "importHelpers": true,
     "declaration": true,
     "declarationDir": "./dist",
+    "esModuleInterop": true,
     "sourceMap": true,
-    "rootDir": "./src",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -19,9 +19,6 @@
     "paths": {
       "*": ["src/*", "node_modules/*"]
     },
-    "jsx": "react",
-    "plugins": [
-      { "transform": "typescript-is/lib/transform-inline/transformer" }
-    ]
+    "jsx": "react"
   }
 }

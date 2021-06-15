@@ -36,6 +36,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      # We build storybook more so as a validation
+      - name: Build Storybook
+        run: npm run build-storybook
+
       - name: Package
         run: npm pack
 
