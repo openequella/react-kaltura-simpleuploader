@@ -96,7 +96,7 @@ export const createEntryForUpload = async (
     new MediaAddContentAction({
       entryId: entry.id,
       resource: new KalturaUploadedFileTokenResource({
-        token: token,
+        token,
       }),
     })
   );
