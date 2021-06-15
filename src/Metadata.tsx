@@ -10,6 +10,37 @@ import * as React from "react";
 import { ChangeEvent, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 
+/**
+ * Hook to manage the main metadata form. Returns three things:
+ *
+ * 1. A variable point to the value of the form stored in state;
+ * 2. A function to set an individual field of the form with a value; and
+ * 3. A function to assist with compile time validation of field names when specified in JSX.
+ *
+ * This is in place of the larger (and many) react frameworks that are out there for forms. But
+ * here we just need a simple solution that still honors (mostly) Typescript typing. If it turns
+ * out we end up needing more, then we may want to look at one of them.
+ *
+ * @param initialFormState The initial values for the form.
+ */
+const useForm = (
+  initialFormState: BasicEntryMetadata
+): [
+  form: BasicEntryMetadata,
+  setFormField: (fieldName: string, value: string) => void,
+  formField: (fieldName: keyof BasicEntryMetadata) => keyof BasicEntryMetadata
+] => {
+  const [form, setForm] = useState<BasicEntryMetadata>(initialFormState);
+
+  return [
+    form,
+    // When I originally did this `setForm` and `set` before the hook I had various type issues
+    // and had to suppress warnings. But for whatever reasons here it's working. 🤷
+    (fieldName, value) => setForm(set({ ...form }, fieldName, value)),
+    (fieldName: keyof BasicEntryMetadata) => fieldName,
+  ];
+};
+
 export interface MetadataProps {
   /**
    * A prefix to add to the DOM `id` for the root of this component.
@@ -49,15 +80,11 @@ export const Metadata = ({
   onEntryCreated,
   uploadResult,
 }: MetadataProps): JSX.Element => {
-  // Alias type to bind the below two expressions to the same type
-  type FormTarget = BasicEntryMetadata;
-  const [form, setForm] = useState<FormTarget>({
+  const [form, setFormField, formField] = useForm({
     name: "",
     description: "",
     mediaType,
   });
-  // Basic compile time validator for form fields
-  const formField = (name: keyof FormTarget) => name;
 
   const [errorMessage, setErrorMessage] = useState<string>("");
   const triggerErrorBoundary = useErrorHandler();
@@ -78,10 +105,7 @@ export const Metadata = ({
   const onFormChange = ({
     target,
   }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    // We trust the below usage based on the use of the compile time validator `formField`.
-    // TODO: Really though, we should add some Jest tests too.
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    setForm(set({ ...form }, target.name, target.value));
+    setFormField(target.name, target.value);
   };
 
   return (
