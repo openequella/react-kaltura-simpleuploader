@@ -59,19 +59,19 @@ export const Metadata = ({
   // Basic compile time validator for form fields
   const formField = (name: keyof FormTarget) => name;
 
-  const [error, setError] = useState<string>("");
-  const handleError = useErrorHandler();
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const triggerErrorBoundary = useErrorHandler();
 
   const onSubmit = async () => {
     try {
       const entry = await createEntryForUpload(kClient, form, uploadResult.id);
       if (!entry) {
-        setError("Failed to create new Media Entry!");
+        setErrorMessage("Failed to create new Media Entry!");
       } else {
         onEntryCreated(entry);
       }
     } catch (e) {
-      handleError(e);
+      triggerErrorBoundary(e);
     }
   };
 
@@ -87,7 +87,7 @@ export const Metadata = ({
   return (
     <div id={`${idPrefix}_metadata`}>
       <strong>Media Details</strong>
-      {error && (
+      {errorMessage && (
         <div role="alert">
           <p>error</p>
         </div>
