@@ -1,5 +1,8 @@
 # Kaltura Simple Uploader (React)
 
+[![Kaltura Simple Uploader (react) CI](https://github.com/openequella/react-kaltura-simpleuploader/actions/workflows/ci.yaml/badge.svg)](https://github.com/openequella/react-kaltura-simpleuploader/actions/workflows/ci.yaml)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://www.conventionalcommits.org/)
+
 A basic library to make it easy to add support for uploading single videos to Kaltura.
 
 ## Licensing
