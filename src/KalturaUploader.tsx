@@ -1,10 +1,10 @@
 import { ErrorFallback } from "ErrorFallback";
-import { KalturaClient } from "kaltura-typescript-client";
 import {
   KalturaMediaEntry,
   KalturaMediaType,
   KalturaUploadToken,
 } from "kaltura-typescript-client/api/types";
+import { createClient } from "KalturaModule";
 import { reducer } from "KalturaUploaderReducer";
 import { Metadata } from "Metadata";
 import * as React from "react";
@@ -88,13 +88,7 @@ const KalturaUploaderInternal = ({
     MediaTypes.video
   );
 
-  const client = new KalturaClient(
-    {
-      endpointUrl: endpoint,
-      clientTag: "openequella_react-kaltura-simpleuploader",
-    },
-    { ks, partnerId }
-  );
+  const client = createClient(endpoint, ks, partnerId);
 
   const mediaTypeSelectorOptions: {
     id: string;
