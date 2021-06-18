@@ -8,7 +8,7 @@ import { createClient } from "KalturaModule";
 import { reducer } from "KalturaUploaderReducer";
 import { Metadata } from "Metadata";
 import * as React from "react";
-import { useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import { Upload } from "Upload";
 
@@ -84,6 +84,11 @@ export interface KalturaUploaderProps {
    * A Kaltura partner ID.
    */
   partnerId: number;
+  /**
+   * Callback to call when an upload is completed.
+   * @param entries A list of KalturaMediaEntry.
+   */
+  callback: (entries: KalturaMediaEntry[]) => void;
 }
 
 /**
@@ -94,11 +99,18 @@ const KalturaUploaderInternal = ({
   endpoint,
   ks,
   partnerId,
+  callback,
 }: KalturaUploaderProps): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, { id: "start" });
   const [mediaType, setMediaType] = useState<MediaTypeOptions>(
     MediaTypes.video
   );
+
+  useEffect(() => {
+    if (state.id === "complete") {
+      callback([state.entry]);
+    }
+  }, [state.id, callback]);
 
   const client = createClient(endpoint, ks, partnerId);
 
@@ -153,21 +165,6 @@ const KalturaUploaderInternal = ({
           }
           uploadResult={state.uploadResult}
         />
-      )}
-      {state.id === "complete" && (
-        <>
-          <h2>New Media Entry created.</h2>
-          <p>
-            <strong>{state.entry.name}</strong>
-          </p>
-          <p>{state.entry.description}</p>
-          <a target="_blank" href={state.entry.dataUrl} rel="noreferrer">
-            <img src={state.entry.thumbnailUrl} alt="Thumbnail" />
-          </a>
-          <p>
-            <a href={state.entry.downloadUrl}>Download Video.</a>
-          </p>
-        </>
       )}
     </div>
   );
