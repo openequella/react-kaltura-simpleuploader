@@ -18,4 +18,5 @@ export default {
     },
   ],
   plugins: [typescript()],
+  external: [ "react", "react-dom", "react-error-boundary", "kaltura-typescript-client", "kaltura-typescript-client/api/types", "lodash" ]
 };
