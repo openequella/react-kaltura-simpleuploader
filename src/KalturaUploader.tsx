@@ -110,7 +110,7 @@ const KalturaUploaderInternal = ({
     if (state.id === "complete") {
       callback([state.entry]);
     }
-  }, [state.id, callback]);
+  }, [state, callback]);
 
   const client = createClient(endpoint, ks, partnerId);
 
