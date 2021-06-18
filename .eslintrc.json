@@ -24,7 +24,9 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {},
+  "rules": {
+    "react-hooks/exhaustive-deps": "error"
+  },
   "settings": {
     "react": {
       "version": "detect"
