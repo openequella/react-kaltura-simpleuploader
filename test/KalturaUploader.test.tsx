@@ -9,6 +9,7 @@ describe("<KalturaUploader/>", () => {
         endpoint="https://www.kaltura.com/"
         ks="not-a-real-key"
         partnerId={1234}
+        callback={jest.fn()}
       />
     );
 
