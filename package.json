@@ -8,8 +8,7 @@
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
-    "src",
-    "kaltura-typescript-client-7.0.2-v20210602-152238.tgz"
+    "src"
   ],
   "config": {
     "lintglobs": "src/**/*.{ts,tsx} test/**/*.{ts,tsx} stories/**/*.{ts,tsx}"
@@ -57,7 +56,7 @@
     "typescript": "4.3.2"
   },
   "dependencies": {
-    "kaltura-typescript-client": "file:kaltura-typescript-client-7.0.2-v20210602-152238.tgz",
+    "kaltura-typescript-client": "https://github.com/openequella/kaltura-typescript-client/releases/download/v17.2.0/kaltura-typescript-client-7.0.2-v20210618-014917.tgz",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
