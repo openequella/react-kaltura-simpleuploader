@@ -4,5 +4,5 @@ import "main.css";
 export type HeadingProps = React.HTMLAttributes<HTMLParagraphElement>;
 
 export const Heading = (props: HeadingProps): JSX.Element => (
-  <p className="ku-heading" {...props} />
+  <p className="ku-heading ku-margin-single" {...props} />
 );
