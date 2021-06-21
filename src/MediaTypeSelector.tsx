@@ -1,5 +1,6 @@
 import { Heading } from "Heading";
 import { MediaTypeOptions } from "KalturaModule";
+import "main.css";
 import * as React from "react";
 
 export interface MediaTypeSelectorProps {
@@ -33,16 +34,19 @@ export const MediaTypeSelector = ({
   onChange,
   options,
   value,
-}: MediaTypeSelectorProps) => {
+}: MediaTypeSelectorProps): JSX.Element => {
   const mediaTypeSelectorId = `${idPrefix}_mts`;
+  const inputId = (id: string): string => `${mediaTypeSelectorId}_${id}`;
+
   return (
     <div id={mediaTypeSelectorId}>
       <Heading>Media Type</Heading>
       {options.map((option) => (
         <div key={option.id}>
           <input
+            className="ku-margin-single"
             type="radio"
-            id={`${mediaTypeSelectorId}_${option.id}`}
+            id={inputId(option.id)}
             name="mediaType"
             value={option.id}
             checked={value === option.value}
@@ -52,7 +56,7 @@ export const MediaTypeSelector = ({
               }
             }}
           />
-          <label htmlFor={option.id}>{option.label}</label>
+          <label htmlFor={inputId(option.id)}>{option.label}</label>
         </div>
       ))}
     </div>

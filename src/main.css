@@ -1,3 +1,7 @@
 .ku-heading {
   font-weight: bold;
 }
+
+.ku-margin-single {
+  margin: 8px;
+}
