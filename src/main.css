@@ -13,3 +13,9 @@
 .ku-grid-item {
   padding: 8px;
 }
+
+.ku-message-block {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  border: 1px solid #d5d5d5;
+}

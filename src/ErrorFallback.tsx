@@ -1,3 +1,4 @@
+import { Heading } from "Heading";
 import React from "react";
 
 export interface ErrorFallbackProps {
@@ -14,8 +15,15 @@ export const ErrorFallback = ({
   resetErrorBoundary,
 }: ErrorFallbackProps): JSX.Element => (
   <div role="alert">
-    <p>Something went wrong:</p>
-    <pre>{error.message}</pre>
-    <button onClick={resetErrorBoundary}>Try again</button>
+    <Heading>Error</Heading>
+    <div className="ku-grid-container">
+      <div className="ku-grid-item">Something went wrong:</div>
+      <div className="ku-grid-item ku-margin-single ku-message-block">
+        <pre>{error.message}</pre>
+      </div>
+      <div className="ku-grid-item">
+        <button onClick={resetErrorBoundary}>Try again</button>
+      </div>
+    </div>
   </div>
 );
