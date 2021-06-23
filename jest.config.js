@@ -7,8 +7,8 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)"],
-  moduleDirectories: [
-    "node_modules",
-    "src"
-  ]
+  moduleDirectories: ["node_modules", "src"],
+  moduleNameMapper: {
+    "\\.(css|less)$": "<rootDir>/jest.styleMock.js",
+  },
 };
