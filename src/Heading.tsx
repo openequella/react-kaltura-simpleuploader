@@ -1,5 +1,5 @@
 import React from "react";
-import "main.css";
+import "./main.css";
 
 export type HeadingProps = React.HTMLAttributes<HTMLParagraphElement>;
 

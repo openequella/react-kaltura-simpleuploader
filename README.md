@@ -5,6 +5,15 @@
 
 A basic library to make it easy to add support for uploading single videos to Kaltura.
 
+## Usage
+
+In the `example` folder there is an example of how to use the module. There are the following key
+parts:
+
+1. Import `render` from the module;
+2. Import the `styles.css` from the module; and
+3. Call `render` against a target DOM element with your Kaltura details.
+
 ## Updating Kaltura Typescript Client API
 
 For some reason, kaltura have stopped publishing their `kaltura-typescript-client` to NPM. It seems

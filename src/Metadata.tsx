@@ -10,6 +10,7 @@ import { set } from "lodash";
 import * as React from "react";
 import { ChangeEvent, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
+import "./main.css";
 
 /**
  * Hook to manage the main metadata form. Returns three things:

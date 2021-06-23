@@ -1,7 +1,7 @@
 import { Heading } from "Heading";
 import { MediaTypeOptions } from "KalturaModule";
-import "main.css";
 import * as React from "react";
+import "./main.css";
 
 export interface MediaTypeSelectorProps {
   /**

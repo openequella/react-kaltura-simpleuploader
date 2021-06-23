@@ -1,5 +1,6 @@
 import { Heading } from "Heading";
 import React from "react";
+import "./main.css";
 
 export interface ErrorFallbackProps {
   error: Error;

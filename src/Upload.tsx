@@ -7,6 +7,7 @@ import { useEffect, useReducer } from "react";
 import { useErrorHandler } from "react-error-boundary";
 import { Spinner } from "Spinner";
 import { reducer } from "UploadReducer";
+import "./main.css";
 
 /**
  * Generate a compressed representation of the number of provided bytes.
