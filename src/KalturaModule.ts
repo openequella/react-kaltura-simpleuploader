@@ -7,7 +7,52 @@ import {
   MediaAddContentAction,
   UploadTokenAddAction,
   UploadTokenUploadAction,
+  KalturaMediaType,
 } from "kaltura-typescript-client/api/types";
+
+/**
+ * Allowed types (based on file extension) for each of the media groups. These are based on the
+ * values which openEQUELLA used to supply the Kaltura Contribution Wizard widget. However a
+ * number of these are no longer used. Maybe revise in future versions.
+ */
+export const MediaTypes = {
+  audio: {
+    type: KalturaMediaType.audio,
+    allowedTypes: [
+      "flv",
+      "asf",
+      "wmv",
+      "qt",
+      "mov",
+      "mpg",
+      "avi",
+      "mp3",
+      "wav",
+    ],
+  },
+  video: {
+    type: KalturaMediaType.video,
+    allowedTypes: [
+      "flv",
+      "asf",
+      "qt",
+      "mov",
+      "mpg",
+      "avi",
+      "wmv",
+      "mp4",
+      "rm",
+      "3gp",
+    ],
+  },
+};
+
+/**
+ * Supported options for types of media.
+ */
+export type MediaTypeOptions =
+  | typeof MediaTypes.audio
+  | typeof MediaTypes.video;
 
 export type BasicEntryMetadata = Pick<
   KalturaMediaEntry,

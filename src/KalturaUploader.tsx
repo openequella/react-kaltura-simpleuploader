@@ -1,70 +1,16 @@
 import { ErrorFallback } from "ErrorFallback";
 import {
   KalturaMediaEntry,
-  KalturaMediaType,
   KalturaUploadToken,
 } from "kaltura-typescript-client/api/types";
-import { createClient } from "KalturaModule";
+import { createClient, MediaTypeOptions, MediaTypes } from "KalturaModule";
 import { reducer } from "KalturaUploaderReducer";
+import { MediaTypeSelector } from "MediaTypeSelector";
 import { Metadata } from "Metadata";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { withErrorBoundary } from "react-error-boundary";
 import { Upload } from "Upload";
-
-/**
- * Allowed types (based on file extension) for each of the media groups. These are based on the
- * values which openEQUELLA used to supply the Kaltura Contribution Wizard widget. However a
- * number of these are no longer used. Maybe revise in future versions.
- */
-const MediaTypes = {
-  audio: {
-    type: KalturaMediaType.audio,
-    allowedTypes: [
-      "flv",
-      "asf",
-      "wmv",
-      "qt",
-      "mov",
-      "mpg",
-      "avi",
-      "mp3",
-      "wav",
-    ],
-  },
-  video: {
-    type: KalturaMediaType.video,
-    allowedTypes: [
-      "flv",
-      "asf",
-      "qt",
-      "mov",
-      "mpg",
-      "avi",
-      "wmv",
-      "mp4",
-      "rm",
-      "3gp",
-    ],
-  },
-};
-
-/**
- * Supported options for types of media.
- */
-type MediaTypeOptions = typeof MediaTypes.audio | typeof MediaTypes.video;
-
-/**
- * Configuration for the media selector.
- */
-const mediaTypeSelectorOptions: {
-  id: string;
-  label: string;
-  value: MediaTypeOptions;
-}[] = [
-  { id: "audio", label: "Audio", value: MediaTypes.audio },
-  { id: "video", label: "Video", value: MediaTypes.video },
-];
 
 /**
  * The DOM ID for the component for easier custom styling and interaction.
@@ -114,37 +60,19 @@ const KalturaUploaderInternal = ({
 
   const client = createClient(endpoint, ks, partnerId);
 
-  const mediaTypeSelectorId = "media-type-selector";
-  const mediaTypeSelector = (
-    <div id={mediaTypeSelectorId}>
-      <p>
-        <strong>Media Type:</strong>
-      </p>
-      {mediaTypeSelectorOptions.map((option) => (
-        <div key={option.id}>
-          <input
-            type="radio"
-            id={`${mediaTypeSelectorId}_${option.id}`}
-            name="mediaType"
-            value={option.id}
-            checked={mediaType === option.value}
-            onChange={(event) => {
-              if (event.target.checked) {
-                setMediaType(option.value);
-              }
-            }}
-          />
-          <label htmlFor={option.id}>{option.label}</label>
-        </div>
-      ))}
-    </div>
-  );
-
   return (
     <div id={kalturaUploaderId}>
       {state.id === "start" && (
         <>
-          {mediaTypeSelector}
+          <MediaTypeSelector
+            idPrefix={kalturaUploaderId}
+            onChange={setMediaType}
+            options={[
+              { id: "audio", label: "Audio", value: MediaTypes.audio },
+              { id: "video", label: "Video", value: MediaTypes.video },
+            ]}
+            value={mediaType}
+          />
           <Upload
             allowedTypes={mediaType.allowedTypes}
             idPrefix={kalturaUploaderId}

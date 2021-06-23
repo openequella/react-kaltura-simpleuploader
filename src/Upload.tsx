@@ -1,10 +1,13 @@
+import { Heading } from "Heading";
 import { KalturaClient } from "kaltura-typescript-client";
 import { KalturaUploadToken } from "kaltura-typescript-client/api/types";
 import { createUploadToken, uploadFile } from "KalturaModule";
 import * as React from "react";
 import { useEffect, useReducer } from "react";
 import { useErrorHandler } from "react-error-boundary";
+import { Spinner } from "Spinner";
 import { reducer } from "UploadReducer";
+import "./main.css";
 
 /**
  * Generate a compressed representation of the number of provided bytes.
@@ -105,11 +108,10 @@ export const Upload = ({
 
   return (
     <div id={`${idPrefix}_upload`}>
-      <p>
-        <strong>Upload Asset</strong>
-      </p>
+      <Heading>Upload Media</Heading>
       {state.id === "start" && (
         <input
+          className="ku-margin-single"
           accept={allowedTypes.map((ext) => `.${ext}`).join()}
           type="file"
           name="sourceFile"
@@ -121,12 +123,11 @@ export const Upload = ({
         />
       )}
       {state.id === "file_selected" && (
-        <>
-          <div>
-            <p>Filename: {state.file.name}</p>
-            <p>File size: {bytesToSize(state.file.size)}</p>
+        <div className="ku-grid-container">
+          <div className="ku-grid-item">
+            {state.file.name} ({bytesToSize(state.file.size)})
           </div>
-          <div>
+          <div className="ku-grid-item">
             <button
               onClick={() => {
                 dispatch({ id: "upload_file", file: state.file });
@@ -135,17 +136,19 @@ export const Upload = ({
               Upload
             </button>
           </div>
-        </>
+        </div>
       )}
       {state.id === "file_uploading" && (
-        // TODO: Add a pretty spinner
-        <p>Please wait, the file is uploading...</p>
+        <div className="ku-grid-container">
+          <div className="ku-grid-item">
+            Please wait, the file is uploading...
+          </div>
+          <div className="ku-grid-item">
+            <Spinner />
+          </div>
+        </div>
       )}
       {state.id === "upload_complete" && <p>Upload is complete.</p>}
-      {state.id === "error" && (
-        // TODO: Use a standard error component and make pretty
-        <p color="red">{state.error}</p>
-      )}
     </div>
   );
 };

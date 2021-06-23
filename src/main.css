@@ -1,0 +1,34 @@
+.ku-heading {
+  font-weight: bold;
+}
+
+.ku-margin-single {
+  margin: 8px;
+}
+
+.ku-grid-container {
+  display: grid;
+}
+
+.ku-grid-template-2col {
+  grid-template-columns: max-content auto;
+}
+
+.ku-grid-item {
+  padding: 8px;
+}
+
+.ku-grid-item-2col-end {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.ku-width-full {
+  width: 100%;
+}
+
+.ku-message-block {
+  background-color: #f4f4f4;
+  border-radius: 4px;
+  border: 1px solid #d5d5d5;
+}

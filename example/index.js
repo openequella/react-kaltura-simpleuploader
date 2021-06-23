@@ -1,5 +1,6 @@
 import { render, kalturaSaasEndpoint } from "../dist";
 import config from "./config";
+import "../dist/styles.css"
 
 const callback = (entries) => {
   console.log("Callback was called with the following entries:");
