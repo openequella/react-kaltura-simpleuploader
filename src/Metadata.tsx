@@ -1,3 +1,4 @@
+import { Heading } from "Heading";
 import { KalturaClient } from "kaltura-typescript-client";
 import {
   KalturaMediaEntry,
@@ -13,7 +14,7 @@ import { useErrorHandler } from "react-error-boundary";
 /**
  * Hook to manage the main metadata form. Returns three things:
  *
- * 1. A variable point to the value of the form stored in state;
+ * 1. A variable pointing to the value of the form stored in state;
  * 2. A function to set an individual field of the form with a value; and
  * 3. A function to assist with compile time validation of field names when specified in JSX.
  *
@@ -108,9 +109,12 @@ export const Metadata = ({
     setFormField(target.name, target.value);
   };
 
+  const metadataId = `${idPrefix}_metadata`;
+  const inputId = (id: string): string => `${metadataId}_${id}`;
+
   return (
-    <div id={`${idPrefix}_metadata`}>
-      <strong>Media Details</strong>
+    <div id={metadataId}>
+      <Heading>Media Details</Heading>
       {errorMessage && (
         <div role="alert">
           <p>error</p>
@@ -122,29 +126,44 @@ export const Metadata = ({
           void onSubmit();
         }}
       >
-        <label>
-          Title
-          <br />
-          <input
-            name={formField("name")}
-            type="text"
-            value={form.name}
-            onChange={onFormChange}
-          />
-        </label>
-        <br />
-        <label>
-          Description
-          <br />
-          <textarea
-            name={formField("description")}
-            value={form.description}
-            onChange={onFormChange}
-          />
-        </label>
-        <br />
-        <br />
-        <input type="submit" value="Submit" />
+        <div className="ku-grid-container ku-grid-template-2col">
+          {/* First Row */}
+          <div className="ku-grid-item">
+            <label htmlFor={inputId(formField("name"))}>Title</label>
+          </div>
+          <div className="ku-grid-item">
+            <input
+              id={inputId(formField("name"))}
+              className="ku-width-full"
+              name={formField("name")}
+              type="text"
+              value={form.name}
+              onChange={onFormChange}
+            />
+          </div>
+
+          {/* Second Row */}
+          <div className="ku-grid-item">
+            <label htmlFor={inputId(formField("description"))}>
+              Description
+            </label>
+          </div>
+          <div className="ku-grid-item">
+            <textarea
+              id={inputId(formField("description"))}
+              className="ku-width-full"
+              name={formField("description")}
+              value={form.description}
+              onChange={onFormChange}
+              rows={10}
+            />
+          </div>
+
+          {/* Third row */}
+          <div className="ku-grid-item ku-grid-item-2col-end">
+            <input type="submit" value="Submit" />
+          </div>
+        </div>
       </form>
     </div>
   );

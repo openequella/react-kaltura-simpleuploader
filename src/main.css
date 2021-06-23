@@ -10,8 +10,21 @@
   display: grid;
 }
 
+.ku-grid-template-2col {
+  grid-template-columns: max-content auto;
+}
+
 .ku-grid-item {
   padding: 8px;
+}
+
+.ku-grid-item-2col-end {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.ku-width-full {
+  width: 100%;
 }
 
 .ku-message-block {
