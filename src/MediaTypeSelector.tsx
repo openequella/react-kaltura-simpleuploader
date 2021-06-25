@@ -40,7 +40,7 @@ export const MediaTypeSelector = ({
 
   return (
     <div id={mediaTypeSelectorId}>
-      <Heading>Media Type</Heading>
+      <Heading>Media type</Heading>
       {options.map((option) => (
         <div key={option.id}>
           <input

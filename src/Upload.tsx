@@ -108,7 +108,7 @@ export const Upload = ({
 
   return (
     <div id={`${idPrefix}_upload`}>
-      <Heading>Upload Media</Heading>
+      <Heading>Upload media</Heading>
       {state.id === "start" && (
         <input
           className="ku-margin-single"

@@ -115,7 +115,7 @@ export const Metadata = ({
 
   return (
     <div id={metadataId}>
-      <Heading>Media Details</Heading>
+      <Heading>Media details</Heading>
       {errorMessage && (
         <div role="alert">
           <p>error</p>
