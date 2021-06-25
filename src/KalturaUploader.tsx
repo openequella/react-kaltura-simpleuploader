@@ -77,9 +77,10 @@ const KalturaUploaderInternal = ({
             allowedTypes={mediaType.allowedTypes}
             idPrefix={kalturaUploaderId}
             kClient={client}
-            onUploadSuccessful={(uploadResult: KalturaUploadToken) =>
-              dispatch({ id: "upload_successful", uploadResult })
-            }
+            onUploadSuccessful={(
+              filename: string,
+              uploadResult: KalturaUploadToken
+            ) => dispatch({ id: "upload_successful", filename, uploadResult })}
           />
         </>
       )}
@@ -87,6 +88,7 @@ const KalturaUploaderInternal = ({
         <Metadata
           idPrefix={kalturaUploaderId}
           kClient={client}
+          defaultTitle={state.filename}
           mediaType={mediaType.type}
           onEntryCreated={(entry: KalturaMediaEntry) =>
             dispatch({ id: "entry_created", entry })
