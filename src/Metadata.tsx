@@ -54,6 +54,10 @@ export interface MetadataProps {
    */
   kClient: KalturaClient;
   /**
+   * An initial default value for the Media Entry's Title.
+   */
+  defaultTitle: string;
+  /**
    * The media type for the Media Entry which is to be created - typically matching the type of file
    * uploaded which resulted in the value provided for `uploadResult`.
    */
@@ -78,12 +82,13 @@ export interface MetadataProps {
 export const Metadata = ({
   idPrefix,
   kClient,
+  defaultTitle,
   mediaType,
   onEntryCreated,
   uploadResult,
 }: MetadataProps): JSX.Element => {
   const [form, setFormField, formField] = useForm({
-    name: "",
+    name: defaultTitle,
     description: "",
     mediaType,
   });

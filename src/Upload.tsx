@@ -48,9 +48,13 @@ export interface UploadProps {
   /**
    * Callback to be triggered upon a successful file upload.
    *
+   * @param filename the name of the file which was successfully uploaded
    * @param uploadResult details returned from the server about the upload attempt.
    */
-  onUploadSuccessful: (uploadResult: KalturaUploadToken) => void;
+  onUploadSuccessful: (
+    filename: string,
+    uploadResult: KalturaUploadToken
+  ) => void;
 }
 
 /**
@@ -77,7 +81,7 @@ export const Upload = ({
         if (uploadToken) {
           const uploadResult = await uploadFile(kClient, uploadToken, file);
           uploadResult
-            ? dispatch({ id: "upload_success", uploadResult })
+            ? dispatch({ id: "upload_success", file, uploadResult })
             : dispatchError("Attempt to upload to Kaltura failed.");
         } else {
           dispatchError(
@@ -101,7 +105,7 @@ export const Upload = ({
         void doUpload(state.file);
         break;
       case "upload_complete":
-        onUploadSuccessful(state.uploadResult);
+        onUploadSuccessful(state.file.name, state.uploadResult);
         break;
     }
   }, [state, dispatch, kClient, onUploadSuccessful]);
