@@ -55,7 +55,7 @@
     "rollup-plugin-css-only": "3.1.0",
     "rollup-plugin-typescript2": "0.31.2",
     "ts-jest": "28.0.3",
-    "typescript": "4.6.4"
+    "typescript": "4.7.2"
   },
   "dependencies": {
     "kaltura-typescript-client": "https://github.com/openequella/kaltura-typescript-client/releases/download/v17.18.0/kaltura-typescript-client-7.0.2-v20220321-004546.tgz",
