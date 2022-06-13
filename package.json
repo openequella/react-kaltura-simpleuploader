@@ -24,7 +24,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@babel/core": "7.18.2",
+    "@babel/core": "7.18.5",
     "@commitlint/cli": "17.0.2",
     "@commitlint/config-conventional": "17.0.2",
     "@storybook/addon-essentials": "6.5.8",
