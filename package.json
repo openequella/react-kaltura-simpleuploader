@@ -14,7 +14,7 @@
     "lintglobs": "src/**/*.{ts,tsx} test/**/*.{ts,tsx} stories/**/*.{ts,tsx}"
   },
   "scripts": {
-    "build": "rollup --config",
+    "build": "rollup --config --bundleConfigAsCjs",
     "clean": "rm -rf node_modules dist",
     "lint": "eslint ${npm_package_config_lintglobs}",
     "format": "eslint --fix ${npm_package_config_lintglobs}",
