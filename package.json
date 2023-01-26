@@ -51,7 +51,7 @@
     "jest-environment-jsdom": "29.4.1",
     "lint-staged": "13.1.0",
     "prettier": "2.8.3",
-    "rollup": "3.10.1",
+    "rollup": "3.11.0",
     "rollup-plugin-css-only": "4.3.0",
     "rollup-plugin-typescript2": "0.34.1",
     "ts-jest": "29.0.5",
