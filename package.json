@@ -38,7 +38,7 @@
     "@typescript-eslint/parser": "5.59.11",
     "babel-loader": "9.1.2",
     "babel-plugin-import": "1.13.6",
-    "eslint": "8.42.0",
+    "eslint": "8.43.0",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jest": "27.2.1",
